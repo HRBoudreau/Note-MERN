@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://127.0.0.1:4000',
+    baseURL: 'http://127.0.0.1:4000',
     timeout: 1000,
     withCredentials: true,
     credentials: 'include'
@@ -21,7 +21,7 @@ export function NewNote() {
 
         console.log(data);
 
-        instance.post('https://127.0.0.1:4000/newnote', data)
+        instance.post('http://127.0.0.1:4000/newnote', data)
             .then(res => { 
                 console.log(data);
                 if ( res.error != undefined ) window.location='/login';

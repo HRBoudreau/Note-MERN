@@ -15,11 +15,11 @@ export function Register() {
         e.preventDefault()
         console.log(formData)
 
-        axios.post('https://localhost:4000/register', formData)
+        axios.post('http://localhost:4000/register', formData)
             .then(res => {
                 if ( res.data.error != undefined ) setErrData(res.data.error);
                 else {
-                    axios.post('https://127.0.0.1:4000/login', formData, {withCredentials: true})
+                    axios.post('http://127.0.0.1:4000/login', formData, {withCredentials: true})
                         .then(res => {
                             if ( res.data.error != undefined ) setErrData(res.data.error);
                             else {

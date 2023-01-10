@@ -56,7 +56,7 @@ const server = express();
 server.use(cookieParser());
 server.use(
     cors({
-        origin: "https://127.0.0.1:3000",
+        origin: "http://127.0.0.1:3000",
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         credentials: true,  "preflightContinue": false,
         allowedHeaders: ['Content-Type', 'Authorization'],
@@ -68,7 +68,7 @@ server.use(express.json()); // to support JSON encoded bodies
 server.use(express.urlencoded({ extended: true })); //suprt url encoded bodies
 
 const options = { key: privateKey, cert: certificate, passphrase: "password" };
-https.createServer(options, server).listen(process.env.PORT, () => console.log('Server listening on port', process.env.PORT) );
+server.listen(process.env.PORT, () => console.log('Server listening on port', process.env.PORT) );
 
 //register user
 server.post('/register', async (req, res) => {
