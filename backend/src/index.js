@@ -9,10 +9,6 @@ const { createAccessToken, createRefreshToken, sendAccessToken, sendRefreshToken
 const { isAuth } = require('./isAuth');
 const passwordHash = require('password-hash');
 const mongoose = require('mongoose');
-const fs = require('fs');
-const privateKey = fs.readFileSync('../key.pem');
-const certificate = fs.readFileSync('../myCert.pem');
-const https = require('https');
 
 mongoose.connect(process.env.MONGO_PATH).
     catch( err => console.log( err, ' Mongoose failed to connect.') );
@@ -67,7 +63,6 @@ server.use(
 server.use(express.json()); // to support JSON encoded bodies
 server.use(express.urlencoded({ extended: true })); //suprt url encoded bodies
 
-const options = { key: privateKey, cert: certificate, passphrase: "password" };
 server.listen(process.env.PORT, () => console.log('Server listening on port', process.env.PORT) );
 
 //register user
